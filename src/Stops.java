@@ -6,6 +6,7 @@ public class Stops {
     private final double stop_lon;
     private final String transport_type;
 
+
     public Stops(int stop_id, int stop_code, String stop_name, double stop_lat, double stop_lon, String transport_type) {
         this.stop_id = stop_id;
         this.stop_code = stop_code;
