@@ -46,8 +46,8 @@ public class Parser {
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
             for (String[] data : reader) {
                 int route_id = Integer.parseInt(data[0]);
-                String route_name = data[2];
-                String route_type = data[5];
+                String route_name = data[1];
+                String route_type = data[4];
                 result.add(new Routes(route_id, route_name, route_type));
             }
         }
