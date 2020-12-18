@@ -20,7 +20,7 @@ public class Parser {
         this(StandardCharsets.UTF_8);
     }
 
-    public List<Stops> parse(Path path) throws IOException {
+    public List<Stops> parseStops(Path path) throws IOException {
         final List<Stops> result = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
@@ -37,13 +37,21 @@ public class Parser {
                 result.add(new Stops(id, code, name, lat, lon, type));
 
             }
-
+            return result;
         }
-        return result;
-
-
     }
 
+    public List<Routes> parseRoutes(Path path) throws IOException {
+        final List<Routes> result = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            for (String[] data : reader) {
+                int route_id = Integer.parseInt(data[0]);
+                String route_name = data[2];
+                String route_type = data[5];
+                result.add(new Routes(route_id, route_name, route_type));
+            }
+        }
+        return result;
+    }
 
 }
-
