@@ -1,5 +1,5 @@
-import com.opencsv.CSVReader;
 
+import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -49,6 +49,17 @@ public class Parser {
                 String route_name = data[1];
                 String route_type = data[4];
                 result.add(new Routes(route_id, route_name, route_type));
+            }
+        }
+        return result;
+    }
+    public List<Trips> parseTrips(Path path) throws IOException {
+        final List<Trips> result = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            for (String[] data : reader) {
+                int route_id = Integer.parseInt(data[0]);
+                int trip_id = Integer.parseInt(data[2]);
+                result.add(new Trips(route_id, trip_id));
             }
         }
         return result;
