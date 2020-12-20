@@ -64,5 +64,20 @@ public class Parser {
         }
         return result;
     }
+    public List<StopTimes> parseStopTimes(Path path) throws IOException {
+        final List<StopTimes> result = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            for (String[] data : reader) {
+                int trip_id = Integer.parseInt(data[0]);
+                String arrival= data[1];
+                String departure= data[2];
+                int stop_id=Integer.parseInt(data[3]);
+                int stop_sequence=Integer.parseInt(data[4]);
+
+                result.add(new StopTimes(trip_id, arrival, departure,stop_id, stop_sequence ));
+            }
+        }
+        return result;
+    }
 
 }
