@@ -1,5 +1,7 @@
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -20,11 +22,11 @@ public class Parser {
         this(StandardCharsets.UTF_8);
     }
 
-    public List<Stops> parseStops(Path path) throws IOException {
+    public List<Stops> parseStops(Path path) throws IOException, CsvValidationException {
         final List<Stops> result = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
-
+            reader.readNext();
             for (String[] data : reader) {
 
                 int id = Integer.parseInt(data[0]);
@@ -41,9 +43,10 @@ public class Parser {
         }
     }
 
-    public List<Routes> parseRoutes(Path path) throws IOException {
+    public List<Routes> parseRoutes(Path path) throws IOException, CsvValidationException {
         final List<Routes> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            reader.readNext();
             for (String[] data : reader) {
                 int route_id = Integer.parseInt(data[0]);
                 String route_name = data[1];
@@ -53,9 +56,10 @@ public class Parser {
         }
         return result;
     }
-    public List<Trips> parseTrips(Path path) throws IOException {
+    public List<Trips> parseTrips(Path path) throws IOException, CsvValidationException {
         final List<Trips> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            reader.readNext();
             for (String[] data : reader) {
                 int route_id = Integer.parseInt(data[0]);
                 int trip_id = Integer.parseInt(data[2]);
@@ -64,9 +68,10 @@ public class Parser {
         }
         return result;
     }
-    public List<StopTimes> parseStopTimes(Path path) throws IOException {
+    public List<StopTimes> parseStopTimes(Path path) throws IOException, CsvValidationException {
         final List<StopTimes> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(path.toFile(), charset))) {
+            reader.readNext();
             for (String[] data : reader) {
                 int trip_id = Integer.parseInt(data[0]);
                 String arrival= data[1];
