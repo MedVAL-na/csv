@@ -74,8 +74,8 @@ public class Parser {
             reader.readNext();
             for (String[] data : reader) {
                 int trip_id = Integer.parseInt(data[0]);
-                String arrival= data[1];
-                String departure= data[2];
+                String arrival= data[1];//should be int
+                String departure= data[2];// should be int
                 int stop_id=Integer.parseInt(data[3]);
                 int stop_sequence=Integer.parseInt(data[4]);
 

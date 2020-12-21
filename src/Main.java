@@ -43,9 +43,9 @@ public class Main {
         }
 
 
-        System.out.println("Show trips");
-        for (Routes routes1 : routes.subList(85, 95)) {
-            System.out.println(routes1);
+        System.out.println("Show 5 first stop_times");
+        for (StopTimes stop_times1 : stop_times.subList(0, 5)) {
+            System.out.println(stop_times1);
         }
 
         System.out.println();

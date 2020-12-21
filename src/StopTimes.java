@@ -1,8 +1,8 @@
 
 public class StopTimes {
     private final int trip_id;
-    private final String arrival;
-    private final String departure;
+    private final String arrival;//should be int
+    private final String departure;//should be int
     private final int stop_id;
     private final int stop_sequence;
 
@@ -21,11 +21,11 @@ public class StopTimes {
 
     public String getArrival() {
         return arrival;
-    }
+    }//int
 
     public String getDeparture() {
         return departure;
-    }
+    }//int
 
     public int getStop_id() {
         return stop_id;
